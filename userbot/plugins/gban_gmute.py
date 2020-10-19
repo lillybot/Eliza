@@ -1,4 +1,4 @@
-# brought to you here(DARK COBRA) by... @hellboi_atul ..
+# brought to you here by... @hellboi_atul ..
 # Don't remove these lines else Gey...
 
 # _______________________________________________________________________________________________________________
