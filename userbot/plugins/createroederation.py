@@ -1,4 +1,3 @@
-
 import datetime
 import asyncio
 from telethon import events
@@ -11,7 +10,7 @@ from userbot import ALIVE_NAME
 
 naam = str(ALIVE_NAME)
 
-bot = "@jarvisofficialsecuritybot"
+bot = "@Missrose_bot"
 
 @borg.on(admin_cmd("createfed ?(.*)"))
 async def _(event):
@@ -23,12 +22,11 @@ async def _(event):
           try:
               await conv.send_message("/start")
               response = await conv.get_response()
-              await conv.send_message("/newfed DARKCOBRA Federation")
+              await conv.send_message("/newfed DARK-COBRA Federation")
               audio = await conv.get_response()
-              final = ("If you would like to know more about JARVIS federation, please visit @jarvisofficialsecuritybot." , "")
+              final = ("If you would like to know more about ROSE BOT federation, please visit @Missrose_bot." , "")
               await borg.send_message(event.chat_id, audio.text)
               await event.delete()
           except YouBlockedUserError:
-              await event.edit("**Error:** `unblock` @jarvisofficialsecuritybot `and retry!")
+              await event.edit("**Error:** `unblock` @Missrose_bot `and retry!")
     
-
