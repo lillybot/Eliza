@@ -19,7 +19,7 @@ pm_caption += "🔸🔹 ℓι¢єиѕє            :   [ӀíϲҽղՏҽ](https://
 
 pm_caption += "🔹🔸 ¢σρуяιgнт          :   [ELIZA](https:/The-Avengers-leader/github.com/Eliza)\n"
 
-pm_caption += " [...▄███▄███▄\n....█████████\n.......▀█████▀\n............▀█▀\n](https://t.me/eliza_suport)\n"
+pm_caption += " [...▄███▄███▄\n....█████████\n.......▀█████▀\n............▀█▀\n](https://t.me/eliza_support)\n"
 #@command(outgoing=True, pattern="^.alive$")
 @borg.on(admin_cmd(pattern=r"alive"))
 async def amireallyalive(alive):
