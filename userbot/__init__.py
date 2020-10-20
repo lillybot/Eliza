@@ -4,7 +4,6 @@ import sys
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from userbot.helpers import functions as darkdef
-
 from var import Var
 
 os.system("pip install --upgrade pip")
@@ -185,5 +184,3 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
-
-
