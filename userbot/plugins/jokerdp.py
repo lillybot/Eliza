@@ -20,11 +20,7 @@ COLLECTION_STRING = [
 
   "joker-hd-wallpapers-1080p",
 
-  "dark-knight-joker-wallpaper",
-
-  "joker-why-so-serious-wallpaper",
-
-  "iron-man-wallpaper-1920x1080",
+  "dark-knight-joker-wallpaper"
 
   
   
