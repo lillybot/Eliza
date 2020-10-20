@@ -1,4 +1,3 @@
-#credits to @mrconfused 
 #  Oh really?! Thanks to the real owner...
 from telethon import events, errors, functions, types
 import inspect
@@ -8,11 +7,11 @@ import sys
 import io
 from userbot.utils import admin_cmd
 from userbot import CMD_HELP
+
 @borg.on(admin_cmd(pattern="calc"))
 async def _(event):
     if event.fwd_from or event.via_bot_id:
         return
-    await event.edit("Processing ...")
     await event.edit("Lemme calculate🤔 ...")
     cmd = event.text.split(" ", maxsplit=1)[1]
     reply_to_id = event.message.id
@@ -33,6 +32,7 @@ async def _(event):
     stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
     sys.stderr = old_stderr
+
     evaluation = ""
     if exc:
         evaluation = exc
@@ -41,17 +41,18 @@ async def _(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Something went wrong"
         evaluation = "Som3thing went rong"
 
     final_output = "**EQUATION**: `{}` \n\n **SOLUTION**: \n`{}` \n".format(cmd, evaluation)
     await event.edit(final_output)
+
 async def aexec(code, event):
     exec(
         f'async def __aexec(event): ' +
         ''.join(f'\n {l}' for l in code.split('\n'))
     )
     return await locals()['__aexec'](event)
+
 CMD_HELP.update({"calc": "`.calc` your equation :\
       \nUSAGE: solves the given maths equation by bodmass rule. "
 }) 
