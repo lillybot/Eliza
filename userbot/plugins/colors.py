@@ -1,37 +1,44 @@
-"""Color Plugin for @UniBorg
-Syntax: .color <color_code>"""
-from telethon import events
-import os
-from PIL import Image, ImageColor
+
+from geopy.geocoders import Nominatim
 from userbot.utils import admin_cmd
+from telethon.tl import types
+from userbot import CMD_HELP 
 
 
-@borg.on(admin_cmd(pattern="color (.*)"))
-async def _(event):
+@borg.on(admin_cmd(pattern="gps ?(.*)"))
+async def gps(event):
     if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1)
-    message_id = event.message.id
+    reply_to_id = event.message
     if event.reply_to_msg_id:
-        message_id = event.reply_to_msg_id
-    if input_str.startswith("#"):
-        try:
-            usercolor = ImageColor.getrgb(input_str)
-        except Exception as e:
-            await event.edit(str(e))
-            return False
-        else:
-            im = Image.new(mode="RGB", size=(1280, 720), color=usercolor)
-            im.save("UniBorg.png", "PNG")
-            input_str = input_str.replace("#", "#COLOR_")
-            await borg.send_file(
-                event.chat_id,
-                "UniBorg.png",
-                force_document=False,
-                caption=input_str,
-                reply_to=message_id
+        reply_to_id = await event.get_reply_message()
+    input_str = event.pattern_match.group(1)
+
+    if not input_str:
+        return await event.edit("what should i find give me location.")
+
+    await event.edit("finding")
+
+    geolocator = Nominatim(user_agent="FRIDAY")
+    geoloc = geolocator.geocode(input_str)
+
+    if geoloc:
+        lon = geoloc.longitude
+        lat = geoloc.latitude
+        await reply_to_id.reply(
+            input_str,
+            file=types.InputMediaGeoPoint(
+                types.InputGeoPoint(
+                    lat, lon
+                )
             )
-            os.remove("UniBorg.png")
-            await event.delete()
+        )
+        await event.delete()
     else:
-        await event.edit("Syntax: `.color <color_code>`")
+        await event.edit("i coudn't find it")
+
+
+CMD_HELP.update({"gps": "`.gps` <location name> :\
+      \nUSAGE: sends you the given location name\
+      "
+})
